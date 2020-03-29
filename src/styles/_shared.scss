@@ -1,0 +1,45 @@
+@import './variables.scss';
+
+h1, h2, h3 { line-height: 1; }
+a {
+    color: $clr-accent;
+    &:hover {
+        color: $clr-accent-dark;
+    }
+}
+
+@mixin screenreader {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.main-title {
+    font-size: $fs-h1;
+    font-weight: $fw-light;
+    text-transform: uppercase;
+    color: $clr-accent;
+    letter-spacing: 2px;
+}
+
+.section-title {
+    color: #ffffff;
+    font-weight: $fw-bold;
+    font-size: $fs-h2;
+    margin: 0;
+    width: max-content;
+}
+
+.reading {
+    margin: 0;
+    font-size: $fs-h1;
+    color: $clr-gray;
+}
+
+.sr-only:not(:focus):not(:active) {
+    @include screenreader;
+}

@@ -1,0 +1,20 @@
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-image: url(./img/mars.jpg);
+    background-size: cover;
+    line-height: 1.6;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    color: #FFF;
+}
+
+h1, h2, h3 { line-height: 1; }
