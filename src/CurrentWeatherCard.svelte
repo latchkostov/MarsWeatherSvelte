@@ -20,6 +20,7 @@
     let currentSolMaxTemp = Math.round(sol.maxTemp);
     let currentSolWindSpeed = Math.round(sol.windSpeed);
     let currentSolWindDirectionDegrees = sol.windDirectionInDegress;
+    let lastWindDirectionInDegrees = currentSolWindDirectionDegrees;
 
     function handleUnitChange(event) {
         isMetric = event.detail.isMetric;
@@ -35,6 +36,13 @@
 
     function getConvertedSpeed(speed) {
         return isMetric ? Math.round(speed) : Math.round(speed / 1.609);
+    }
+
+    $: {
+        if (lastWindDirectionInDegrees !== sol.windDirectionInDegress) {
+            currentSolWindDirectionDegrees = sol.windDirectionInDegress;
+            lastWindDirectionInDegrees = currentSolWindDirectionDegrees;
+        }
     }
 
 </script>

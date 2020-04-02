@@ -10,6 +10,13 @@
         );
     })
 
+    $: {
+        if (currentWindDirectionArrow) {
+            currentWindDirectionArrow.style.setProperty('--direction',
+                `${windDirection}deg`
+            );
+        }
+	}
     
 </script>
 
