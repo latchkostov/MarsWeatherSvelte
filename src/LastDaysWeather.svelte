@@ -57,7 +57,7 @@
         color: $clr-gray;
         align-self: center;
         justify-self: flex-end;
-        width: 100vw;
+        width: inherit;
         transform: translateY(calc(78% - 3rem));
         transition: transform 350ms ease;
         padding: 1rem 2rem 2rem 2rem;
