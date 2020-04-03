@@ -9,6 +9,10 @@
 
 	let isLastDaysShowing = false;
 
+	const appHeight = () => document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`);
+	window.addEventListener('resize', appHeight);
+	appHeight();
+
 	getWeather().then(data => {
     	selectedSolIndex = data.length - 1;
 		sols = data;
