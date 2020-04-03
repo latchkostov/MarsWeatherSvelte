@@ -36,8 +36,6 @@
     @import './styles/shared.scss';
     
     .unit {
-        grid-column: 5 / 6;
-        place-self: end;
         color: $clr-light;
         opacity: .7;
         display: flex;

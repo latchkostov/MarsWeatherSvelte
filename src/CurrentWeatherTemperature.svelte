@@ -20,7 +20,6 @@
     @import './styles/shared.scss';
     
     .temp {
-        grid-column: 3 / 4;
         display: flex;
         justify-content: center;
         text-align: center;

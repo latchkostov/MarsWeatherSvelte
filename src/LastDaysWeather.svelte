@@ -8,6 +8,9 @@
 
     function togglePreviousWeather() {
         showWeather = !showWeather;
+        dispatch('showingPreviousWeather', {
+            value: showWeather
+        });
     }
 
     function showMoreInfoForSol(sol) {
@@ -56,9 +59,8 @@
         background-color: $clr-light;
         color: $clr-gray;
         align-self: center;
-        justify-self: flex-end;
-        width: inherit;
-        transform: translateY(calc(78% - 3rem));
+        width: 100vw;
+        transform: translateY(calc(90% - 3rem));
         transition: transform 350ms ease;
         padding: 1rem 2rem 2rem 2rem;
 
@@ -107,6 +109,7 @@
         
             .main-title-previous-days {
                 text-align: left;
+                padding-left: 1rem;
             }
         
             .previous-day:nth-child(1) {
@@ -138,12 +141,14 @@
 
             .previous-days {
                 display: flex;
+                flex-wrap: wrap;
                 color: $clr-dark;
                 justify-content: space-between;
         
                 .previous-day {
                     opacity: 0;
                     transition: opacity 350ms linear;
+                    padding: 1.2rem 1rem;
                 
                     & > * {
                         margin: 0;

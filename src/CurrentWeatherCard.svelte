@@ -59,12 +59,13 @@
 
     .mars-current-weather {
         display: grid;
-        margin: 6rem 4rem 0 4rem;
+        margin: 6rem auto;
         min-width: min-content;
         max-width: min-content;
         background-color: rgba(0,0,0,0.7);
-        padding: 4rem;
+        padding: 3rem;
         grid-template-columns: min-content 1px min-content 1px min-content;
+        grid-template-rows: auto;
         grid-gap: 3em;
 
         .divider {
@@ -77,12 +78,24 @@
             grid-column: 1 / -1;
         }
 
+        .date-container {
+            grid-column: 1 / 2;
+        }
+
         .divider-one {
             grid-column: 2 / 3;;
         }
 
+        .temperature-container {
+            grid-column: 3 / 4;
+        }
+
         .divider-two {
             grid-column: 4 / 5;
+        }
+
+        .wind-speed-container {
+            grid-column: 5 / 6;
         }
 
         .info {
@@ -95,16 +108,62 @@
                 }
             }
         }
+
+        .unit-toggle-container {
+            grid-column: 5 / 6;
+            place-self: end;
+        }
+    }
+
+    @media screen and (max-width: 680px) {
+        .mars-current-weather {
+            grid-template-columns: 100px 1px 100px;
+            
+            .divider-one, .divider-two, .info {
+                display: none;
+            }
+
+            .main-title {
+                text-align: center;
+            }
+
+            .date-container {
+                grid-column: 1 / 4;
+                place-self: center;
+            }
+
+            .temperature-container {
+                grid-column: 1 / 4;
+                place-self: center;
+            }
+
+            .wind-speed-container {
+                grid-column: 1 / 4;
+                place-self: center;
+            }
+
+            .unit-toggle-container {
+                grid-column: 1 / 4;
+                place-self: center;
+                z-index: 101;
+            }
+        }
     }
 </style>
 
 <div class="mars-current-weather">
     <h1 class="main-title">Latest Weather at Elysium Plantitia</h1>
-    <CurrentWeatherDate date={sol.date} solNum={sol.sol} />
+    <div class="date-container">
+        <CurrentWeatherDate date={sol.date} solNum={sol.sol} />
+    </div>
     <div class="divider divider-one"></div>
-    <CurrentWeatherTemperature maxTemp="{currentSolMaxTemp} {tempUnitSymbol}" minTemp="{currentSolMinTemp} {tempUnitSymbol}" />
+    <div class="temperature-container">
+        <CurrentWeatherTemperature maxTemp="{currentSolMaxTemp} {tempUnitSymbol}" minTemp="{currentSolMinTemp} {tempUnitSymbol}" />
+    </div>
     <div class="divider divider-two"></div>
-    <CurrentWeatherWind windSpeed="{currentSolWindSpeed} {speedUnitSymbol}" windDirection="{currentSolWindDirectionDegrees}" />
+    <div class="wind-speed-container">
+        <CurrentWeatherWind windSpeed="{currentSolWindSpeed} {speedUnitSymbol}" windDirection="{currentSolWindDirectionDegrees}" />
+    </div>
     <div class="info">
         <p>
             InSight is taking daily weather measurements (temperature, wind, pressure)
@@ -115,5 +174,7 @@
             <a href="https://mars.nasa.gov/insight/mission/overview/">Find out more about InSight.</a>
         </p>
     </div>
-    <CurrentWeatherUnitToggle on:unitChanged={handleUnitChange} />
+    <div class="unit-toggle-container">
+        <CurrentWeatherUnitToggle on:unitChanged={handleUnitChange} />
+    </div>
 </div>

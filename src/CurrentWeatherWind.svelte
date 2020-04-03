@@ -39,7 +39,6 @@
     @import './styles/shared.scss';
 
     .wind {
-        grid-column: 5 / 6;
         display: flex;
         flex-direction: row-reverse;
         justify-content: flex-end;

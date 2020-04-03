@@ -23,13 +23,14 @@
 				} = data;
 			
 				return Object.entries(solData).map(([sol, data]) => {
+					console.log
 					return {
 						sol: sol,
 						maxTemp: data.AT.mx,
 						minTemp: data.AT.mn,
 						windSpeed: data.HWS.av,
-						windDirectionInDegress: data.WD.most_common.compass_degrees,
-						windDirectionCardinal: data.WD.most_common.compass_point,
+						windDirectionInDegress: data.WD.most_common ? data.WD.most_common.compass_degrees : 0,
+						windDirectionCardinal: data.WD.most_common ? data.WD.most_common.compass_point : 0,
 						date: new Date(data.First_UTC)
 					}
 				});
@@ -48,21 +49,45 @@
 		}
 	}
 
+	function showingPreviousWeather(event) {
+		const isShowing = event.detail.value;
+		if (isShowing) {
+
+		}
+	}
+
 </script>
 
 <main class="page-wrapper">
 	{#if sols}
-		<CurrentWeatherCard sol={sols[selectedSolIndex]} on:unitChanged={handleUnitChange} />
-		<LastDaysWeather sols={sols} isMetric={isMetric} on:showMoreInfoForSol={showMoreInfoForSol} />
+		<div class="current-weather-container">
+			<CurrentWeatherCard sol={sols[selectedSolIndex]} on:unitChanged={handleUnitChange} />
+		</div>
+		<div class="last-days-weather-container">
+			<LastDaysWeather sols={sols} isMetric={isMetric} on:showMoreInfoForSol={showMoreInfoForSol}/>
+		</div>
 	{/if}
 </main>
+
 
 <style type="text/scss">
 	.page-wrapper {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
-		height: 100vh;
-		width: 100%;
+		height: 100%;
+		width: 100vw;
+
+		.current-weather-container {
+			flex: 0 0 auto;
+			max-width: 1200px;
+			max-height: 50%;
+		}
+
+		.last-days-weather-container {
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			//max-height: 10%;
+		}
 	}
 </style>
