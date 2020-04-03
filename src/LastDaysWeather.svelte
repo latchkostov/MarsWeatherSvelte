@@ -17,6 +17,7 @@
         dispatch('showMoreInfoForSol', {
             sol: sol
         });
+        togglePreviousWeather();
     }
 </script>
 
