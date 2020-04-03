@@ -67,6 +67,7 @@
             width: var(--size);
             background-color: $clr-accent-dark;
             clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
             transform: translateY(-50%) rotate(var(--direction));
             transform-origin: bottom center;
             transition: transform 350ms ease-in;

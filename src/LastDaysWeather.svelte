@@ -81,6 +81,7 @@
             color: $clr-gray;
             line-height: 1;
             clip-path: polygon(50% 0, 0 100%, 100% 100%);
+            -webkit-clip-path: polygon(50% 0, 0 100%, 100% 100%);
             cursor: pointer;
             border: 0;
         
