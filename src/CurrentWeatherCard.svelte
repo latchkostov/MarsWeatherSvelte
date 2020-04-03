@@ -145,7 +145,6 @@
             .unit-toggle-container {
                 grid-column: 1 / 4;
                 place-self: center;
-                z-index: 101;
             }
         }
     }

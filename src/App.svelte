@@ -7,6 +7,8 @@
 	let sols;
 	let isMetric = true;
 
+	let isLastDaysShowing = false;
+
 	getWeather().then(data => {
     	selectedSolIndex = data.length - 1;
 		sols = data;
@@ -23,7 +25,6 @@
 				} = data;
 			
 				return Object.entries(solData).map(([sol, data]) => {
-					console.log
 					return {
 						sol: sol,
 						maxTemp: data.AT.mx,
@@ -50,21 +51,22 @@
 	}
 
 	function showingPreviousWeather(event) {
-		const isShowing = event.detail.value;
-		if (isShowing) {
-
-		}
+		isLastDaysShowing = event.detail.value;
 	}
 
 </script>
 
 <main class="page-wrapper">
 	{#if sols}
-		<div class="current-weather-container">
+		<div class="current-weather-container"
+			class:zIdx100="{!isLastDaysShowing}"
+			class:zIdx0="{isLastDaysShowing}"
+		>
 			<CurrentWeatherCard sol={sols[selectedSolIndex]} on:unitChanged={handleUnitChange} />
 		</div>
 		<div class="last-days-weather-container">
-			<LastDaysWeather sols={sols} isMetric={isMetric} on:showMoreInfoForSol={showMoreInfoForSol}/>
+			<LastDaysWeather sols={sols} isMetric={isMetric} on:showMoreInfoForSol={showMoreInfoForSol}
+			on:showingPreviousWeather={showingPreviousWeather}/>
 		</div>
 	{/if}
 </main>
@@ -88,6 +90,14 @@
 			left: 0;
 			bottom: 0;
 			//max-height: 10%;
+		}
+
+		.zIdx0 {
+			z-index: 0;
+		}
+
+		.zIdx100 {
+			z-index: 100;
 		}
 	}
 </style>
